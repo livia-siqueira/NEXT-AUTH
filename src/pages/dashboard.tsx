@@ -9,7 +9,7 @@ const Dashboard: React.FC = () => {
   const { user } = useContext(AuthContext);
 
   useEffect(() => {
-   
+   //api.get('/users')
   }, []);
 
   return (
@@ -23,7 +23,8 @@ const Dashboard: React.FC = () => {
 export default Dashboard;
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const apiClient = getAPIClient(ctx);
+  //a função para buscar os cookies precisa receber um contexto caso esteja sendo chamada no servidor para que a aplicação entenda
+  //const apiClient = getAPIClient(ctx);
     const { ["nextauth.token"]: token } = parseCookies(ctx);
   if (!token) {
     return {
@@ -33,7 +34,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
       },
     };
   }
-  await apiClient.get('/users')
+  //await apiClient.get('/users')
   return {
     props: {},
   };
